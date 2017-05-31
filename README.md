@@ -13,6 +13,14 @@ If you need to make a component draggable and zoomable on scroll, this component
 </DragAndZoom>
 ```
 
+## Install
+```bash
+yarn add react-drag-and-zoom
+
+# Or, if using npm
+npm install --save react-drag-and-zoom
+```
+
 ## Props
 ### `zoomStep: number`
 This value is used to control zooming velocity. Default is `0.7`.
