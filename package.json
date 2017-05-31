@@ -14,24 +14,47 @@
     "build": "nwb build-react-component",
     "clean": "nwb clean-module && nwb clean-demo",
     "start": "nwb serve-react-demo",
-    "test": "nwb test-react",
+    "test": "yarn lint && nwb test-react",
     "test:coverage": "nwb test-react --coverage",
-    "test:watch": "nwb test-react --server"
+    "test:watch": "nwb test-react --server",
+    "lint": "eslint src demo/src",
+    "format": "prettier-eslint  --write \"src/**/*.js\" \"demo/**/*.js\"  \"tests/**/*.jsx\"",
+    "lint-modified": "LIST=`git diff-index --name-only HEAD | grep '.*\\.js' | grep -v json`; if [ \"$LIST\" ]; then eslint $LIST; fi; echo '\nRun `yarn format-modified` to automatically fix all errors and warnings possible.'",
+    "format-modified": "LIST=`git diff-index --name-only HEAD | grep '.*\\.js' | grep -v json`; if [ \"$LIST\" ]; then prettier-eslint --write $LIST; fi;"
   },
-  "dependencies": {},
+  "pre-commit": "lint-modified",
+  "dependencies": {
+    "eslint-plugin-flowtype": "^2.34.0",
+    "prop-types": "^15.5.10",
+    "react-draggable": "^2.2.6"
+  },
   "peerDependencies": {
-    "react": "15.x"
+    "react": "15.x",
+    "react-dom": "^15.x"
   },
   "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^3.19.0",
+    "eslint-config-react-app": "^1.0.4",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-jsx-a11y": "^5.0.3",
+    "eslint-plugin-react": "^7.0.1",
+    "normalize.css": "^7.0.0",
     "nwb": "0.16.x",
+    "pre-commit": "^1.2.2",
+    "prettier": "^1.3.1",
+    "prettier-eslint-cli": "^3.6.1",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "react-icons": "^2.2.5"
   },
-  "author": "",
-  "homepage": "",
+  "author": "Citrusbyte",
+  "homepage": "https://github.com/citrusbyte/react-drag-and-zoom",
   "license": "MIT",
-  "repository": "",
+  "repository": "https://github.com/citrusbyte/react-drag-and-zoom",
   "keywords": [
-    "react-component"
+    "react-component",
+    "zoom",
+    "drag"
   ]
 }

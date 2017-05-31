@@ -1,23 +1,32 @@
-import expect from 'expect'
-import React from 'react'
-import {render, unmountComponentAtNode} from 'react-dom'
+import expect from 'expect';
+import React from 'react';
+import { render, unmountComponentAtNode } from 'react-dom';
 
-import Component from 'src/'
+import DragAndZoom from 'src/';
 
 describe('Component', () => {
-  let node
+  let node;
 
   beforeEach(() => {
-    node = document.createElement('div')
-  })
+    node = document.createElement('div');
+  });
 
   afterEach(() => {
-    unmountComponentAtNode(node)
-  })
+    unmountComponentAtNode(node);
+  });
 
-  it('displays a welcome message', () => {
-    render(<Component/>, node, () => {
-      expect(node.innerHTML).toContain('Welcome to React components')
-    })
-  })
-})
+  it('Renders the component as expected', () => {
+    render(
+      <DragAndZoom zoomStep={1} initialZoom={50} minZoom={20} maxZoom={200}>
+        <span>I can be zoomed and dragged</span>
+      </DragAndZoom>,
+      node,
+      () => {
+        console.log(node.innerHTML);
+        expect(node.innerHTML).toContain('class="react-draggable"');
+        expect(node.innerHTML).toContain('transform: translate(0px, 0px);');
+        expect(node.innerHTML).toContain('I can be zoomed and dragged');
+      }
+    );
+  });
+});
