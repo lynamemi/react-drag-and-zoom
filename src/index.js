@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { number } from 'prop-types';
+import { number, func, oneOf, shape, string } from 'prop-types';
 import Draggable from 'react-draggable';
 
 const isNegative = n => ((n = +n) || 1 / n) < 0;
@@ -18,6 +18,16 @@ class DragAndZoom extends PureComponent {
     initialZoom: number,
     minZoom: number,
     maxZoom: number,
+    onZoom: func,
+    onMouseDown: func,
+    onDragStart: func,
+    onDrag: func,
+    onDragStop: func,
+    bounds: oneOf([
+      shape({ left: number, top: number, right: number, bottom: number }),
+      string,
+      'parent',
+    ]),
   };
 
   static defaultProps = {
@@ -36,7 +46,7 @@ class DragAndZoom extends PureComponent {
   handleMouseWheel = e => {
     e.preventDefault();
 
-    const { minZoom, maxZoom, zoomStep } = this.props;
+    const { minZoom, maxZoom, zoomStep, onZoom } = this.props;
 
     const zoom = updatePercentageBasedOnScroll({
       percentage: this.state.zoom,
@@ -52,6 +62,8 @@ class DragAndZoom extends PureComponent {
       originX: this.originCoordinates.x,
       isScrolling: true,
     });
+
+    onZoom(zoom, e);
   };
 
   handleMouseMove = e => {
@@ -69,10 +81,29 @@ class DragAndZoom extends PureComponent {
   };
 
   render() {
-    const { children, initialZoom, minZoom, maxZoom, zoomStep, ...other } = this.props;
+    const {
+      children,
+      initialZoom,
+      minZoom,
+      maxZoom,
+      zoomStep,
+      onZoom,
+      onMouseDown,
+      onDragStart,
+      onDrag,
+      onDragStop,
+      bounds,
+      ...other
+    } = this.props;
     return (
       <div {...other}>
-        <Draggable>
+        <Draggable
+          onMouseDown={onMouseDown}
+          onStart={onDragStart}
+          onDrag={onDrag}
+          onStop={onDragStop}
+          bounds={bounds}
+        >
           <div>
             <div
               onWheel={this.handleMouseWheel}

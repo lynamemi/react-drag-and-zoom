@@ -83,7 +83,16 @@ class Demo extends Component {
             backgroundColor: 'rgba(255, 200, 200, .4)',
           }}
         >
-          <DragAndZoom minZoom={50} maxZoom={200} initialZoom={100}>
+          <DragAndZoom
+            minZoom={50}
+            maxZoom={200}
+            initialZoom={100}
+            onZoom={(zoom, e) => console.log('onZoom', zoom, e)}
+            onMouseDown={e => console.log('onMouseDown', e)}
+            onDragStart={e => console.log('onDragStart', e)}
+            onDrag={e => console.log('onDrag', e)}
+            onDragStop={e => console.log('onDragStop', e)}
+          >
             <Team />
           </DragAndZoom>
         </main>

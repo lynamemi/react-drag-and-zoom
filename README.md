@@ -34,12 +34,25 @@ Minimum zoom percentage that can be applied. Default is `0`.
 ### `maxZoom: number`
 Maximum zoom percentage that can be applied. Default is `Number.MAX_SAFE_INTEGER`.
 
-### Example with all props
-```js
-<DragAndZoom zoomStep={1} initialZoom={80} minZoom={20} maxZoom={200}>
-  <span>I can be zoomed and dragged</span>
-</DragAndZoom>
-```
+### `onZoom: func`
+Called while scrolling for zoom with the zoom value as it's first argument and the Event as the second.
+
+### `onMouseDown: func`
+Called on mouse down with the Event as its only argument.
+
+### `onDragStart: func`
+Called on drag start with the Event as its only argument.
+### `onDrag: func`
+Called while dragging with the Event as its only argument.
+
+### `onDragStop: func`
+Called when dragging stops with the Event as its only argument.
+
+### `bounds: oneOf([shape({ left: number, top: number, right: number, bottom: number }), selector: string, 'parent'])`
+Specifies movement boundaries. Accepted values:
+- `parent` restricts movement within the node's offsetParent (nearest node with position relative or absolute).
+- A selector, restricts movement within the targeted node
+- An object with `left, top, right, and bottom` properties. These indicate how far in each direction the draggable can be moved.
 
 ## About Citrusbyte
 
@@ -56,5 +69,5 @@ At Citrusbyte we believe in and support open source software.
 
 *Citrusbyte and the Citrusbyte logo are trademarks or registered trademarks of Citrusbyte, LLC.*
 
-[npm-badge]: https://img.shields.io/npm/v/npm-package.svg?style=flat-square
-[npm]: https://www.npmjs.org/package/npm-package
+[npm-badge]: https://img.shields.io/npm/v/react-drag-and-zoom.svg?style=flat-square
+[npm]: https://www.npmjs.org/package/react-drag-and-zoom
