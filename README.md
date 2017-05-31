@@ -1,7 +1,7 @@
 # react-drag-and-zoom
 [![npm package][npm-badge]][npm]
 
-[Demo!](react-drag-and-zoom.now.sh)
+[Demo!](https://react-drag-and-zoom.now.sh)
 
 ## Why
 If you need to make a component draggable and zoomable on scroll, this component is for you.
