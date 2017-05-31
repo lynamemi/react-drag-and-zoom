@@ -22,7 +22,6 @@ describe('Component', () => {
       </DragAndZoom>,
       node,
       () => {
-        console.log(node.innerHTML);
         expect(node.innerHTML).toContain('class="react-draggable"');
         expect(node.innerHTML).toContain('transform: translate(0px, 0px);');
         expect(node.innerHTML).toContain('I can be zoomed and dragged');
