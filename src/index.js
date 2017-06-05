@@ -5,7 +5,7 @@ import Draggable from 'react-draggable';
 const isNegative = n => ((n = +n) || 1 / n) < 0;
 
 const updatePercentageBasedOnScroll = ({ percentage, min, max, step, delta }) => {
-  const signedStep = isNegative(delta) ? step * -1 : step;
+  const signedStep = isNegative(delta) ? step : step * -1;
   const newPercentage = percentage + signedStep;
   if (newPercentage > max) return max;
   if (newPercentage < min) return min;
