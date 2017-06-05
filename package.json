@@ -17,6 +17,7 @@
     "test": "yarn lint && nwb test-react",
     "test:coverage": "nwb test-react --coverage",
     "test:watch": "nwb test-react --server",
+    "prepublish": "nwb build-react-component",
     "lint": "eslint src demo/src",
     "format": "prettier-eslint  --write \"src/**/*.js\" \"demo/**/*.js\"  \"tests/**/*.jsx\"",
     "lint-modified": "LIST=`git diff-index --name-only HEAD | grep '.*\\.js' | grep -v json`; if [ \"$LIST\" ]; then eslint $LIST; fi; echo '\nRun `yarn format-modified` to automatically fix all errors and warnings possible.'",
