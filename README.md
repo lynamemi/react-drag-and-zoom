@@ -71,3 +71,7 @@ At Citrusbyte we believe in and support open source software.
 
 [npm-badge]: https://img.shields.io/npm/v/react-drag-and-zoom.svg?style=flat-square
 [npm]: https://www.npmjs.org/package/react-drag-and-zoom
+
+## License
+
+MIT © [Citrusbyte, LLC](https://citrusbyte.com)
