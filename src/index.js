@@ -28,6 +28,8 @@ class DragAndZoom extends PureComponent {
       string,
       'parent',
     ]),
+    dragCursor: string,
+    zoomCursor: string,
   };
 
   static defaultProps = {
@@ -35,6 +37,8 @@ class DragAndZoom extends PureComponent {
     initialZoom: 100,
     minZoom: 0,
     maxZoom: Number.MAX_SAFE_INTEGER,
+    dragCursor: 'move',
+    zoomCursor: 'row-resize',
   };
 
   state = {
@@ -93,6 +97,8 @@ class DragAndZoom extends PureComponent {
       onDrag,
       onDragStop,
       bounds,
+      dragCursor,
+      zoomCursor,
       ...other
     } = this.props;
     return (
@@ -111,7 +117,7 @@ class DragAndZoom extends PureComponent {
               ref={node => (this.target = node)}
               style={{
                 ...children.props.style,
-                cursor: this.state.isScrolling ? 'row-resize' : 'move',
+                cursor: this.state.isScrolling ? zoomCursor : dragCursor,
                 transition: 'transform-origin 1000ms ease-out',
                 transform: `scale(${this.state.zoom / 100})`,
                 transformOrigin: `${this.state.originX}% ${this.state.originY}%`,
